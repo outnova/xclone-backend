@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Api\PostController;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index() {
-        return "Homepage";
+        $postController = new PostController();
+        return $postController->index();
     }
     //
 }
