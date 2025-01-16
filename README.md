@@ -53,7 +53,13 @@ This guide outlines the steps to bootstrap the X Clone Backend project.
 
 ## Running the Application
 
-1.  **Start the development server:** In your project directory, run the following command:
+1. **Generate app encryption key**
+
+    ```bash
+    php artisan key:generate
+    ```
+
+2.  **Start the development server:** In your project directory, run the following command:
 
     ```bash
     php artisan serve
