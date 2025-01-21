@@ -12,13 +12,14 @@ class Post extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $filliable = [
+    protected $fillable = [
         'content',
         'media',
         'likes_count',
         'comments_count',
         'is_published',
         'visibility',
+        'user_id',
     ];
 
     /**
