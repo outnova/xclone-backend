@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\PostController;
 
 /*
 Route::get('/user', function (Request $request) {
@@ -27,6 +28,6 @@ Route::post('/auth/login', [AuthController::class, 'login']);
 Route::get('/auth/user', [AuthController::class, 'user'])->middleware('auth:sanctum');
 Route::post('/auth/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
-
+Route::post('/posts', [PostController::class, 'create'])->middleware('auth:sanctum');
 
 Route::post('/users/exists', [UserController::class, 'checkUsername']);
