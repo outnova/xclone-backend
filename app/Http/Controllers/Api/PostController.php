@@ -48,12 +48,56 @@ class PostController extends Controller
         }
     }
 
-    public function update() {
+    public function update(Request $request, $id) {
+        try {
+            $validated = $request->validate([
+                'content' => 'nullable|string|max:1000',
+                'visibility' => 'nullable|in:public,private,followers',
+            ]);
 
+            $post = Post::findOrFail($id);
+            $user = $request->user(); //get the user
+
+            if($post->user_id !== $user->id) { //check if the user has autorization to edit the post
+                return response()->json(['message' => 'No autorizado para actualizar este post'], 403);
+            }
+            
+            //edit the post
+            $post->update($validated);
+
+            return response()->json([
+                'message' => 'Post editado exitosamente',
+                'data' => $post,
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "Ocurrió un error editando el post",
+                'error' => $th->getMessage(),
+            ], 500);
+        }
     }
 
-    public function delete() {
-        
+    public function delete(Request $request, $id) {
+        try {
+            $post = Post::findOrFail($id);
+            $user = $request->user(); //get the user
+
+            if($post->user_id !== $user->id) { //check if the user has autorization to edit the post
+                return response()->json(['message' => 'No autorizado para eliminar este post'], 403);
+            }
+
+            $post->delete();
+
+            return response()->json([
+                'message' => 'Post eliminado exitosamente',
+                'data' => $post,
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "Ocurrió un error eliminando el post",
+                'error' => $th->getMessage(),
+            ], 500);
+        }
     }
     //
 }
