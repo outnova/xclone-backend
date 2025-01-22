@@ -25,9 +25,15 @@ Route::get('/login', function() {
 // Rutas de autenticación
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
-Route::get('/auth/user', [AuthController::class, 'user'])->middleware('auth:sanctum');
-Route::post('/auth/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/auth/user', [AuthController::class, 'user']);
+    Route::post('/auth/logout', [AuthController::class, 'logout']);
+});
 
-Route::post('/posts', [PostController::class, 'create'])->middleware('auth:sanctum');
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/posts', [PostController::class, 'create']);
+    Route::put('/posts/{id}', [PostController::class, 'update']);
+    Route::delete('/posts/{id}', [PostController::class, 'delete']);
+});
 
 Route::post('/users/exists', [UserController::class, 'checkUsername']);
