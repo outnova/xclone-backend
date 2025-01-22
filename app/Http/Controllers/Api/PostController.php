@@ -99,5 +99,21 @@ class PostController extends Controller
             ], 500);
         }
     }
+
+    public function show($id) {
+        try {
+            $post = Post::findOrFail($id);
+
+            return response()->json([
+                'message' => 'Post encontrado exitosamente',
+                'data' => $post,
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => "Ocurrió un error al obtener el post",
+                'error' => $th->getMessage(),
+            ], 500);
+        }
+    }
     //
 }
