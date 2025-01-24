@@ -86,7 +86,7 @@ class PostController extends Controller
                 return response()->json(['message' => 'No autorizado para eliminar este post'], 403);
             }
 
-            $post->delete();
+            $post->forceDelete();
 
             return response()->json([
                 'message' => 'Post eliminado exitosamente',
