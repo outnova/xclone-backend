@@ -43,4 +43,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/unfollow/{followedId}', [FollowerController::class, 'unfollow']);
 });
 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/users/{userId}/followers-count', [UserController::class, 'getFollowersCount']);
+    Route::get('/users/{userId}/following-count', [UserController::class, 'getFollowingCount']);
+    Route::get('/users/{userId}/followers', [UserController::class, 'getFollowers']);
+    Route::get('/users/{userId}/following', [UserController::class, 'getFollowing']);
+});
+
 Route::post('/users/exists', [UserController::class, 'checkUsername']);
