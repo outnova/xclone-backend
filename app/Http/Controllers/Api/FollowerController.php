@@ -29,6 +29,12 @@ class FollowerController extends Controller
                 ], 400);
             }
 
+            if($followedId == $user->id) {
+                return response()->json([
+                    'message' => 'No puedes seguirte a ti mismo',
+                ], 400);
+            }
+
             //create follow relationship
             $user->following()->attach($followedId);
 
@@ -53,6 +59,12 @@ class FollowerController extends Controller
             if(!$user->following()->where('followed_id', $followedId)->exists()) {
                 return response()->json([
                     'message' => 'No estás siguiendo a este usuario',
+                ], 400);
+            }
+
+            if($followedId == $user->id) {
+                return response()->json([
+                    'message' => 'No puedes dejar de seguirte a ti mismo',
                 ], 400);
             }
 
