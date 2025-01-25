@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\FollowerController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\PostController;
 
@@ -35,6 +36,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/posts', [PostController::class, 'create']);
     Route::put('/posts/{id}', [PostController::class, 'update']);
     Route::delete('/posts/{id}', [PostController::class, 'delete']);
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/follow/{followedId}', [FollowerController::class, 'follow']);
+    Route::delete('/unfollow/{followedId}', [FollowerController::class, 'unfollow']);
 });
 
 Route::post('/users/exists', [UserController::class, 'checkUsername']);
