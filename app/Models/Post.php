@@ -16,7 +16,7 @@ class Post extends Model
 
     protected $fillable = [
         'content',
-        'media',
+        'files',
         'likes_count',
         'comments_count',
         'is_published',
