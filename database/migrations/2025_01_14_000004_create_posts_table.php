@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->text('content');
-            $table->string('media')->nullable();
+            $table->string('files')->nullable();
             $table->unsignedBigInteger('likes_count')->default(0);
             $table->unsignedBigInteger('comments_count')->default(0);
             $table->boolean('is_published')->default(true);
