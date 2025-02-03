@@ -1,0 +1,338 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/register:
+    get:
+      summary: ''
+      operationId: getApiRegister
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: 'Registrando usuario'
+      tags:
+        - Endpoints
+      security: []
+  /api/login:
+    get:
+      summary: ''
+      operationId: getApiLogin
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: 'Iniciando sesión'
+      tags:
+        - Endpoints
+      security: []
+  /api/auth/register:
+    post:
+      summary: ''
+      operationId: postApiAuthRegister
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/auth/login:
+    post:
+      summary: ''
+      operationId: postApiAuthLogin
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/auth/user:
+    get:
+      summary: ''
+      operationId: getApiAuthUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/auth/logout:
+    post:
+      summary: ''
+      operationId: postApiAuthLogout
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  '/api/posts/{id}':
+    get:
+      summary: ''
+      operationId: getApiPostsId
+      description: ''
+      parameters: []
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error_code: server_error
+                  message: 'Ocurrió un error al obtener el post'
+                  error: "SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  la sintaxis de entrada no es válida para tipo bigint: «optio»\nCONTEXT:  portal sin nombre, parámetro 1 = '...' (Connection: pgsql, SQL: select * from \"posts\" where \"posts\".\"id\" = optio and \"posts\".\"deleted_at\" is null limit 1)"
+                properties:
+                  error_code:
+                    type: string
+                    example: server_error
+                  message:
+                    type: string
+                    example: 'Ocurrió un error al obtener el post'
+                  error:
+                    type: string
+                    example: "SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  la sintaxis de entrada no es válida para tipo bigint: «optio»\nCONTEXT:  portal sin nombre, parámetro 1 = '...' (Connection: pgsql, SQL: select * from \"posts\" where \"posts\".\"id\" = optio and \"posts\".\"deleted_at\" is null limit 1)"
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: ''
+      operationId: putApiPostsId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiPostsId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the post.'
+        example: optio
+        required: true
+        schema:
+          type: string
+  /api/posts:
+    post:
+      summary: ''
+      operationId: postApiPosts
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  '/api/follow/{followedId}':
+    post:
+      summary: ''
+      operationId: postApiFollowFollowedId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: followedId
+        description: ''
+        example: eius
+        required: true
+        schema:
+          type: string
+  '/api/unfollow/{followedId}':
+    delete:
+      summary: ''
+      operationId: deleteApiUnfollowFollowedId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: followedId
+        description: ''
+        example: omnis
+        required: true
+        schema:
+          type: string
+  '/api/users/{userId}/followers-count':
+    get:
+      summary: ''
+      operationId: getApiUsersUserIdFollowersCount
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: userId
+        description: ''
+        example: et
+        required: true
+        schema:
+          type: string
+  '/api/users/{userId}/following-count':
+    get:
+      summary: ''
+      operationId: getApiUsersUserIdFollowingCount
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: userId
+        description: ''
+        example: est
+        required: true
+        schema:
+          type: string
+  '/api/users/{userId}/followers':
+    get:
+      summary: ''
+      operationId: getApiUsersUserIdFollowers
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: userId
+        description: ''
+        example: laborum
+        required: true
+        schema:
+          type: string
+  '/api/users/{userId}/following':
+    get:
+      summary: ''
+      operationId: getApiUsersUserIdFollowing
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: userId
+        description: ''
+        example: cum
+        required: true
+        schema:
+          type: string
+  /api/users/exists:
+    post:
+      summary: ''
+      operationId: postApiUsersExists
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+tags:
+  -
+    name: Endpoints
+    description: ''
