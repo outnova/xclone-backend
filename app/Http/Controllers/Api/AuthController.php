@@ -31,6 +31,7 @@ class AuthController extends Controller
 
             if($validator->fails()) {
                 $data = [
+                    'error_code' => 'validation_error',
                     'message' => 'Error en la validación de datos',
                     'errors' => $validator->errors(),
                     'status' => 400
@@ -53,6 +54,7 @@ class AuthController extends Controller
         }
         catch(\Throwable $th) {
             return response()->json([
+                'error_code' => 'server_error',
                 'status' => false,
                 'message' => $th->getMessage(),
             ], 500);
@@ -110,6 +112,7 @@ class AuthController extends Controller
 
             if (!$user || !Hash::check($request->password, $user->password)) {
                 return response()->json([
+                    'error_code' => 'invalid_login',
                     'message' => 'Credenciales incorrectas',
                     'status' => 401,
                 ], 401);
@@ -123,6 +126,7 @@ class AuthController extends Controller
         }
         catch(\Throwable $th) {
                 return response()->json([
+                    'error_code' => 'server_error',
                     'status' => false,
                     'message' => $th->getMessage(),
                 ], 500);

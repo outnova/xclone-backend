@@ -28,6 +28,7 @@ class UserController extends Controller
             ], 200);
         } catch(\Throwable $th) {
             return response()->json([
+                'error_code' => 'server_error',
                 'message' => 'Error al obtener la cantidad de seguidores',
                 'error' => $th->getMessage(),
             ], 500);
@@ -46,6 +47,7 @@ class UserController extends Controller
             ], 200);
         } catch(\Throwable $th) {
             return response()->json([
+                'error_code' => 'server_error',
                 'message' => 'Error al obtener la cantidad de seguidos',
                 'error' => $th->getMessage(),
             ], 500);
@@ -64,6 +66,7 @@ class UserController extends Controller
             ], 200);
         } catch(\Throwable $th) {
             return response()->json([
+                'error_code' => 'server_error',
                 'message' => 'Error al obtener los seguidores',
                 'error' => $th->getMessage(),
             ], 500);
@@ -82,6 +85,7 @@ class UserController extends Controller
             ], 200);
         } catch(\Throwable $th) {
             return response()->json([
+                'error_code' => 'server_error',
                 'message' => 'Error al obtener los seguidores',
                 'error' => $th->getMessage(),
             ], 500);

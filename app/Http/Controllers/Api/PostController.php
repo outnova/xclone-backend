@@ -53,6 +53,7 @@ class PostController extends Controller
                     if(!$fileType) {
                         //if the extension isn't registered, throw a error
                         return response()->json([
+                            'error_code' => 'filetype_error',
                             'message' => "El tipo de archivo con extensión .$extension no está soportado."
                         ], 400);
                     }
@@ -83,6 +84,7 @@ class PostController extends Controller
             ], 201);
         } catch (\Throwable $th) {
             return response()->json([
+                'error_code' => 'server_error',
                 'message' => "Ocurrió un error durante la creación del post",
                 'error' => $th->getMessage(),
             ], 500);
@@ -100,7 +102,10 @@ class PostController extends Controller
             $user = $request->user(); //get the user
 
             if($post->user_id !== $user->id) { //check if the user has autorization to edit the post
-                return response()->json(['message' => 'No autorizado para actualizar este post'], 403);
+                return response()->json([
+                    'error_code' => 'unautorized',
+                    'message' => 'No autorizado para actualizar este post',
+                ], 403);
             }
             
             //edit the post
@@ -112,6 +117,7 @@ class PostController extends Controller
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
+                'error_code' => 'server_error',
                 'message' => "Ocurrió un error editando el post",
                 'error' => $th->getMessage(),
             ], 500);
@@ -124,7 +130,10 @@ class PostController extends Controller
             $user = $request->user(); //get the user
 
             if($post->user_id !== $user->id) { //check if the user has autorization to edit the post
-                return response()->json(['message' => 'No autorizado para eliminar este post'], 403);
+                return response()->json([
+                    'error_code' => 'unautorized',
+                    'message' => 'No autorizado para eliminar este post',
+                ], 403);
             }
 
             //delete the files associated to post (if exists)
@@ -155,6 +164,7 @@ class PostController extends Controller
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
+                'error_code' => 'server_error',
                 'message' => "Ocurrió un error eliminando el post",
                 'error' => $th->getMessage(),
             ], 500);
@@ -171,6 +181,7 @@ class PostController extends Controller
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
+                'error_code' => 'server_error',
                 'message' => "Ocurrió un error al obtener el post",
                 'error' => $th->getMessage(),
             ], 500);

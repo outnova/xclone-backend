@@ -44,6 +44,7 @@ class FollowerController extends Controller
         }
         catch(\Throwable $th) {
             return response()->json([
+                'error_code' => 'server_error',
                 'message' => 'Ocurrió un error al intentar seguir al usuario',
                 'error' => $th->getMessage(),
             ], 500);
@@ -78,6 +79,7 @@ class FollowerController extends Controller
         }
         catch(\Throwable $th) {
             return response()->json([
+                'error_code' => 'server_error',
                 'message' => 'Ocurrió un error al intentar de seguir a este usuario',
                 'error' => $th->getMessage(),
             ], 500);
